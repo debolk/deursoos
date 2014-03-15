@@ -1,0 +1,17 @@
+#!/bin/bash
+echo Starting...
+sleep 1s
+logger Started scanning
+echo Started scanning
+while true
+do
+/opt/deur/scanner | (
+	while true
+	do
+		read id || exit
+		logger Found $id, authenticating...
+		php /opt/deur/authenticate.php $id
+	done
+	) 
+sleep 1s
+done
