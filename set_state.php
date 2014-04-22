@@ -16,7 +16,6 @@ $reader = $readers[0];
 $card = scard_connect($scard, $reader);
 
 // Send a correct signals to the card (sound and light)
-
 if($succes) {
 	scard_transmit($card, "FF0040A60401010201");
 }
