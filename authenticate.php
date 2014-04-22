@@ -1,49 +1,78 @@
 <?php
-$card = $argv[1];
+
+// Get card ID parameter
+$card = preg_replace('/[()*\\\\]/','\\\\$0', $argv[1]);
+
+// Connect to LDAP
 $ldap = ldap_connect();
-openlog("authenticator", LOG_PID | LOG_PERROR, LOG_LOCAL0);
-
-$card = preg_replace('/[()*\\\\]/','\\\\$0',$card);
-$card_ldap = ldap_search($ldap, 'dc=bolkhuis,dc=nl', '(&(objectClass=device)(serialNumber=' . $card . '))');
-
-$count = ldap_count_entries($ldap, $card_ldap);
-if($count > 1)
-{
-	syslog(LOG_ERR, 'Multiple owners detected for card ' . $card);
-	echo 'Multiple owners detected for card ' . $card;
-	die();
-} elseif($count == 0)
-{
-	syslog(LOG_NOTICE, 'Rejected card ' . $card);
-	echo 'Rejected card ' . $card;
-	exec('/opt/deur/log_unknown ' . escapeshellarg($card));
-	die();
+if (!$ldap) {
+    end_process("Fatal: cannot connect to LDAP\n");
 }
 
+// Search for a card on record
+$card_ldap = ldap_search($ldap, 'dc=bolkhuis,dc=nl', "(&(objectClass=device)(serialNumber=$card))");
+if ($card_ldap != false) {
+    // Check for multiple entries
+    $count = ldap_count_entries($ldap, $card_ldap);
+    if($count > 1) {
+        end_process("Card rejected: card is added to the system twice\n");
+    }
+    elseif($count == 0) {
+        // Log the card ID (used for adding new cards by admins)
+        exec('/opt/deur/log_unknown ' . escapeshellarg($card));
+        end_process("Card rejected: card is not known in the system\n");
+    }
+}
+else {
+    // Log the card ID (used for adding new cards by admins)
+    exec('/opt/deur/log_unknown ' . escapeshellarg($card));
+    end_process("Card rejected: card is not known in the system\n");
+}
+
+// Find owner of the card
 $card_ldap = ldap_first_entry($ldap, $card_ldap);
 $card_dn = ldap_get_dn($ldap, $card_ldap);
 
 $owner = preg_replace('/^[^,]*,/','',$card_dn);
 $owner_ldap = ldap_search($ldap, $owner, '(objectClass=inetOrgPerson)');
-if(ldap_count_entries($ldap, $owner_ldap) != 1)
+
+$owner_count = ldap_count_entries($ldap, $owner_ldap);
+
+if($owner_count != 1)
 {
-	print ldap_count_entries($ldap, $owner_ldap);
-	syslog(LOG_ERR, 'Not right amount of owners for card ' . $card . ' (' . $owner . ')');
-	echo 'Not right amount of owners for card ' . $card . ' (' . $owner . ')';
-	die();
+    end_process("Card rejected: card has more than one owner");
 }
+
 $owner_ldap = ldap_first_entry($ldap, $owner_ldap);
 $attributes = ldap_get_attributes($ldap, $owner_ldap);
+
+// Check for authorisation
 if(in_array('gosaIntranetAccount', $attributes['objectClass']))
 {
-	syslog(LOG_INFO, 'Allowed entry of card ' . $card . ' (' . $owner . ')');
-	echo 'Allowed entry of card ' . $card . ' (' . $owner . ')';
+    echo "Access granted: opening door\n";
+	syslog(LOG_INFO, "Access granted: $owner ($card)");
+    // Open the door
 	for($i = 0; $i < 5; $i++)
 	{
-		exec('/opt/deur/open');
+		exec('/home/deursysteem/open');
 		usleep(200000);
 	}
-} else {
-	syslog(LOG_ERR, 'Rejected user ' . $owner . ' with card ' . $card . ' (no permission)');
-	echo 'Rejected user ' . $owner . ' with card ' . $card . ' (no permission)';
+}
+else {
+    end_process("Card rejected: $owner unauthorised to use door\n");
+}
+
+
+// Utility functions
+
+/**
+ * Ends the execution of the script with the given message printed and logged
+ * @param string $message the message to print
+ * @return void
+ */
+function end_process($message)
+{
+    syslog(LOG_INFO, $message);
+    exec('/usr/bin/php /home/deursysteem/set_state.php rejected');
+    exit($message);
 }
