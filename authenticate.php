@@ -17,7 +17,7 @@ if ($card_ldap != false) {
     if($count > 1) {
         end_process("Card rejected: card is added to the system twice\n");
     }
-    elseif($count == 0) {
+    elseif ($count == 0) {
         // Log the card ID (used for adding new cards by admins)
         exec('/opt/deur/log_unknown ' . escapeshellarg($card));
         end_process("Card rejected: card is not known in the system\n");
@@ -38,11 +38,13 @@ $owner_ldap = ldap_search($ldap, $owner, '(objectClass=inetOrgPerson)');
 
 $owner_count = ldap_count_entries($ldap, $owner_ldap);
 
+// Reject cards with more than one owner
 if($owner_count != 1)
 {
     end_process("Card rejected: card has more than one owner");
 }
 
+// Read the complete LDAP-entry of the owner
 $owner_ldap = ldap_first_entry($ldap, $owner_ldap);
 $attributes = ldap_get_attributes($ldap, $owner_ldap);
 
