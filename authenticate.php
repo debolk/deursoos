@@ -56,7 +56,7 @@ if(in_array('gosaIntranetAccount', $attributes['objectClass']))
     // Open the door
 	for($i = 0; $i < 5; $i++)
 	{
-		exec('/home/deursysteem/open');
+		exec('./open');
 		usleep(200000);
 	}
 }
@@ -75,6 +75,6 @@ else {
 function end_process($message)
 {
     syslog(LOG_INFO, $message);
-    exec('/usr/bin/php /home/deursysteem/set_state.php rejected');
+    exec('/usr/bin/php ./set_state.php rejected');
     exit($message);
 }

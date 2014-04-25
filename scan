@@ -5,12 +5,12 @@ logger Started scanning
 echo Started scanning
 while true
 do
-php /home/deursysteem/read.php | (
+php ./read.php | (
 	while true
 	do
 		read id || exit
 		logger Found $id, authenticating...
-		php /home/deursysteem/authenticate.php $id
+		php ./authenticate.php $id
 	done
 	) 
 sleep 1s
