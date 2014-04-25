@@ -20,12 +20,14 @@ if ($card_ldap != false) {
     elseif ($count == 0) {
         // Log the card ID (used for adding new cards by admins)
         file_put_contents('failures.txt', strftime('%c').' '.$card, FILE_APPEND);
+        echo("$card\n");
         end_process("Card rejected: card is not known in the system\n");
     }
 }
 else {
     // Log the card ID (used for adding new cards by admins)
     file_put_contents('failures.txt', strftime('%c').' '.$card, FILE_APPEND);
+    echo("$card\n");
     end_process("Card rejected: card is not known in the system\n");
 }
 
