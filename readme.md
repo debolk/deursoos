@@ -5,7 +5,7 @@ Software for the opening of the door.
 ## Technology
 The system consists of a few files working in tandem. `scan` is a bash-script that is started on boot. It starts `read.php` which connects to the scanner and waits for a valid card to be presented. 
 
-When a valid card is presented, this script prints a standarized id to STDOUT. This output is read by `scan` and fed to `authenticate.php`. This second script connects to LDAP and determines whether the door should be opened. If the user can enter the door, the script calls `open`, which opens the door. If the card is not found in LDAP, the script calls `log_unknown` to save the card as an unknown detection for later reference.
+When a valid card is presented, this script prints a standarized id to STDOUT. This output is read by `scan` and fed to `authenticate.php`. This second script connects to LDAP and determines whether the door should be opened. If the user can enter the door, the script calls `open`, which opens the door. If the card is not found in LDAP, the script saves the card ID and current date and time for later reference to `failures.txt`.
 
 Directly afterwards, `authenticate.php` calls `set_state.php` to notify the user of its decision.   
 

@@ -19,13 +19,13 @@ if ($card_ldap != false) {
     }
     elseif ($count == 0) {
         // Log the card ID (used for adding new cards by admins)
-        exec('/opt/deur/log_unknown ' . escapeshellarg($card));
+        file_put_contents('failures.txt', strftime('%c').' '.$card, FILE_APPEND);
         end_process("Card rejected: card is not known in the system\n");
     }
 }
 else {
     // Log the card ID (used for adding new cards by admins)
-    exec('/opt/deur/log_unknown ' . escapeshellarg($card));
+    file_put_contents('failures.txt', strftime('%c').' '.$card, FILE_APPEND);
     end_process("Card rejected: card is not known in the system\n");
 }
 
