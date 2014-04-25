@@ -22,3 +22,4 @@ Directly afterwards, `authenticate.php` calls `set_state.php` to notify the user
 * Copy the files to the system
 * Configure system to reboot every morning at 6am using a cronjob (or the scanner will lose connection to the server)
 * Configure the server to start `scan` on boot
+* Configure the server to run `program` every day to store the configuration of the teensy door opener

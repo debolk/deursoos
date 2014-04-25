@@ -1,0 +1,6 @@
+#!/bin/bash
+sleep 1
+echo Starting programmer
+/opt/deur/teensy_loader_cli -mmcu=atmega32u4 -w /opt/deur/serial.hex
+logger Reprogrammed the controller
+echo Reprogrammed the controller
