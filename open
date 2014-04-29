@@ -1,5 +1,5 @@
 #/bin/bash
-/usr/bin/php ./set_state.php accepted
+/usr/bin/php /home/deursysteem/set_state.php accepted
 sleep 0.1
 logger Opening door
 echo Opening door
