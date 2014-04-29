@@ -12,7 +12,7 @@ $readers = scard_list_readers($scard);
 
 // Can't connect
 if(!$readers) {
-    echo "Fatal: can't connect to reader";
+    echo "Fatal: can't connect to reader\n";
     exit;
 }
 
