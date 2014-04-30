@@ -1,15 +1,5 @@
-#!/bin/bash
-echo Starting...
-sleep 1s
-logger Started scanning
-echo Started scanning
+#/bin/bash
 while true; do
-    READ=`/usr/bin/php /home/deursysteem/read.php`
-    if [ $? -eq 0 ]; then
-        echo "Got card, attempting authentication"
-        php /home/deursysteem/authenticate.php $READ
-    else
-        echo "Can't connect to scanner. Waiting one minute before retrying"
-        sleep 60s
-    fi
+    /usr/bin/php '/home/deursysteem/scan.php'
+    logger 'Scanning process crashed; respawning'
 done
