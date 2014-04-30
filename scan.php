@@ -30,7 +30,7 @@ while (true)
     signal_busy($card);
 
     // Authenticate the card
-    if (authenticate($card)) {
+    if (authenticate(get_id($card))) {
         signal_success($card);
         open_door();
     }
@@ -146,10 +146,10 @@ function get_id($card)
 
 /**
  * Authenticates a ID-card against LDAP
- * @param string $card the unique card-ID to check
+ * @param string $card_id the unique card-ID to check
  * @return boolean true if the card is accepted, false if not
  */
-function authenticate($card)
+function authenticate($card_id)
 {
     // Connect to LDAP
     $ldap = ldap_connect();
@@ -159,24 +159,24 @@ function authenticate($card)
     }
 
     // Search for a card on record
-    $card_ldap = ldap_search($ldap, 'dc=bolkhuis,dc=nl', '(&(objectClass=device)(serialNumber='.$card.'))');
+    $card_ldap = ldap_search($ldap, 'dc=bolkhuis,dc=nl', '(&(objectClass=device)(serialNumber='.$card_id.'))');
 
     // Card is not known in LDAP
     if ($card_ldap == false) {
-        syslog(LOG_NOTICE, 'Card rejected: unknown in LDAP. Card ID: '.$card);
+        syslog(LOG_NOTICE, 'Card rejected: unknown in LDAP. Card ID: '.$card_id);
         return false;
     }
 
     // Check for multiple entries
     $count = ldap_count_entries($ldap, $card_ldap);
     if($count > 1) {
-        syslog(LOG_NOTICE, 'Card rejected: card is added to LDAP twice. Card ID: '.$card);
+        syslog(LOG_NOTICE, 'Card rejected: card is added to LDAP twice. Card ID: '.$card_id);
         return false;
     }
 
     // Check for zero number of entries
     if ($count == 0) {
-        syslog(LOG_NOTICE, 'Card rejected: unknown in LDAP. Card ID: '.$card);
+        syslog(LOG_NOTICE, 'Card rejected: unknown in LDAP. Card ID: '.$card_id);
         return false;
     }
 
@@ -190,7 +190,7 @@ function authenticate($card)
     // Reject cards with more than one owner
     if(ldap_count_entries($ldap, $owner_ldap) != 1)
     {
-        syslog(LOG_INFO, "Card rejected: card has more than one owner. Card ID: ".$card);
+        syslog(LOG_INFO, "Card rejected: card has more than one owner. Card ID: ".$card_id);
         return false;
     }
 
@@ -201,14 +201,14 @@ function authenticate($card)
     // Check for authorisation
     if(! in_array('gosaIntranetAccount', $attributes['objectClass']))
     {
-        syslog(LOG_NOTICE, 'Card rejected: unauthorised to use door. Owner: '.$owner.' Card ID: '.$card);
+        syslog(LOG_NOTICE, 'Card rejected: unauthorised to use door. Owner: '.$owner.' Card ID: '.$card_id);
         return false;
     }
     else {
     }
 
     // All checks passed, card is authorized to use the door
-    syslog(LOG_NOTICE, 'Card accepted. Owner: '.$owner.' Card ID: '.$card);
+    syslog(LOG_NOTICE, 'Card accepted. Owner: '.$owner.' Card ID: '.$card_id);
     return true;
 }
 
