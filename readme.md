@@ -14,10 +14,6 @@ The main system consists of a single file `scan.php`. It establishes a connectio
 ** `pecl install pcsc-alpha`
 ** Configure the extension `echo 'extension=pcsc.so' > /etc/php5/mods-available/pcsc.ini`
 ** Enable the extension `php5enmod pcsc`
-* Install PHP extension for Direct IO (used to talk to the door)
-** `pecl install dio-0.0.7`
-** Configure the extension `echo 'extension=dio.so' > /etc/php5/mods-available/dio.ini`
-** Enable the extension `php5enmod dio`
 * Disable pn533 kernel module (including hotloading) to not claim the port to the scanner
 * Copy the files to the system
 * Configure system to reboot every morning at 6am using a cronjob (or the scanner will lose connection to the server)
