@@ -2,5 +2,4 @@
 /usr/bin/php ./set_state.php accepted
 sleep 0.1
 logger Opening door
-echo Opening door
 echo 'open' >> /dev/ttyACM0
