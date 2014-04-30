@@ -220,8 +220,9 @@ function open_door()
 {
     for($i = 0; $i < 5; $i++)
     {
-        exec('./open_door');
-        usleep(200000);
+        $connection = fopen("/dev/ttyACM0", "w+");
+        fwrite($connection, "open");
+        usleep(20000);
     }
 }
 
