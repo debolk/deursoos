@@ -6,10 +6,10 @@ echo Started scanning
 while true; do
     READ=`/usr/bin/php /home/deursysteem/read.php`
     if [ $? -eq 0 ]; then
-        logger "Got card, attempting authentication"
+        echo "Got card, attempting authentication"
         php /home/deursysteem/authenticate.php $READ
     else
-        logger "Can't connect to scanner. Waiting one minute before retrying"
+        echo "Can't connect to scanner. Waiting one minute before retrying"
         sleep 60s
     fi
 done
