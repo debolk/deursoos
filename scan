@@ -1,5 +1,7 @@
 #/bin/bash
 while true; do
     /usr/bin/php '/home/deursysteem/scan.php'
-    logger 'Scanning process crashed; respawning'
+    logger 'Scanning process crashed; respawning process after ten seconds'
+    sleep 10s
+    logger 'Respawning scanning process'
 done
