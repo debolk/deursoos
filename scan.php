@@ -85,7 +85,7 @@ function connect_scanner($context)
 function disconnect_scanner($card)
 {
     scard_disconnect($card);
-    sleep(15);  // Delay is needed for a successful disconnect
+    sleep(5);  // Delay is needed for a successful disconnect
 }
 
 /**
