@@ -3,15 +3,13 @@ echo Starting...
 sleep 1s
 logger Started scanning
 echo Started scanning
-while true
-do
-php /home/deursysteem/read.php | (
-	while true
-	do
-		read id || exit
-		logger Found $id, authenticating...
-		php /home/deursysteem/authenticate.php $id
-	done
-	) 
-sleep 1s
+while true; do
+    READ=`/usr/bin/php /home/deursysteem/read.php`
+    if [$? > 0]; then
+        logger "Can't connect to scanner. Waiting one minute before retrying"
+        sleep 60s
+    else
+        logger "Got card, authenticating"
+        php /home/deursysteem/authenticate.php $READ
+    fi
 done
