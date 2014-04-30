@@ -31,14 +31,21 @@ while(true) {
     // Send the command to disable the default beep when presenting a card
 	scard_transmit($card, SCARD_BEEP_DEFAULT_DISABLE);
 
-    // Output the correct card ID
-	echo get_id($card) . "\n";
     // Notify the user that we're checking the card
-	scard_transmit($card, SCARD_LED_SET_OK);
+    scard_transmit($card, SCARD_LED_SET_OK);
+
+    // Read the card ID
+    $id = get_id($card);
+
+    // Output the correct card ID
+    echo "$id\n";
 
     // Disconnect from the card
-	scard_disconnect($card);
-    sleep(15);  // Delay is needed for a successful disconnect
+    scard_disconnect($card);
+    sleep(15);  // Needed for a succesful disconnect
+    
+    // End the script
+    exit(0);
 }
 
 // Reads the standarised ID from the card in the correct format
