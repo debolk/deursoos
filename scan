@@ -1,0 +1,5 @@
+#/bin/bash
+while true; do
+    echo 'Starting process'
+    /usr/bin/php '/home/deursysteem/scan.php'
+done
