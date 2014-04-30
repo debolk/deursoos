@@ -68,7 +68,7 @@ function establish_context()
  */
 function connect_scanner($context)
 {
-    $readers = scard_list_readers($scard);
+    $readers = scard_list_readers($context);
     if(!$readers || count($readers) > 1) {
         syslog(LOG_EMERG, 'Incorrect amount of readers (!= 1)');
         exit;
