@@ -14,7 +14,7 @@ The main system consists of a single file `scan.php`. It establishes a connectio
  * `pecl install pcsc-alpha`
  * Configure the extension `echo 'extension=pcsc.so' > /etc/php5/mods-available/pcsc.ini`
  * Enable the extension `php5enmod pcsc`
- * Disable pn533 kernel module (including hotloading) to not claim the port to the scanner
+* Disable pn533 kernel module (including hotloading) to not claim the port to the scanner
 * Copy the files to the system
 * Configure system to run the bash-file `reset_system` (which will reset the USB-device and reboot the system) every morning at 6am using a cronjob or the scanner will lose connection to the server
 * Configure the server to start `/home/deursysteem/scan &` on boot
