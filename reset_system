@@ -2,7 +2,7 @@
 logger 'Resetting system to ensure connectivity to the reader'
 
 USB=`lsusb -d 072f:2200`
-if [[$USB =~ 'Bus ([0-9]{3}) Device ([0-9]{3]})*']]
+if [[$USB =~ 'Bus ([0-9]{3}) Device ([0-9]{3]})*']]; then 
     logger 'Found USB-scanner at Bus ${BASH_REMATCH[1]} Device ${BASH_REMATCH[2]}. Resetting..'
     ./usbreset /dev/bus/usb/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}
     logger 'USB-scanner reset succesful'
