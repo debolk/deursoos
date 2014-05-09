@@ -16,6 +16,6 @@ The main system consists of a single file `scan.php`. It establishes a connectio
 ** Enable the extension `php5enmod pcsc`
 * Disable pn533 kernel module (including hotloading) to not claim the port to the scanner
 * Copy the files to the system
-* Configure system to reboot every morning at 6am using a cronjob (or the scanner will lose connection to the server)
+* Configure system to run the bash-file `reset_system` (which will reset the USB-device and reboot the system) every morning at 6am using a cronjob or the scanner will lose connection to the server
 * Configure the server to start `/home/deursysteem/scan &` on boot
 * Configure the server to run `doorlock/program` every day to store the configuration of the teensy door opener
