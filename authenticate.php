@@ -36,7 +36,7 @@ elseif($count == 0)
 {
 	syslog(LOG_NOTICE, "Rejected card $card_id");
     // Card could not be found in LDAP, log to failures.txt
-    file_put_contents('failures.txt', date().' '.$card_id);
+    file_put_contents('failures.txt', date('c').' '.$card_id);
 	exit(RETURN_DENIED);
 }
 
