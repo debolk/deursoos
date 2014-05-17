@@ -1,4 +1,4 @@
 #!/bin/bash
-echo $(date): $1 >> /var/www/failures.txt
-tail /var/www/failures.txt > /tmp/failures.txt
-mv /tmp/failures.txt /var/www/failures.txt
+echo $(date): $1 >> /home/deursysteem/failures.txt
+tail /home/deursysteem/failures.txt > /tmp/failures.txt
+mv /tmp/failures.txt /home/deursysteem/failures.txt
