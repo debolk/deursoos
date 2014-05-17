@@ -6,7 +6,7 @@ while true; do
     	while true
     	do
     		read id || exit
-    		logger Found $id, authenticating...
+    		logger Read card $id
     		php /home/deursysteem/authenticate.php $id
     	done
     	) 

@@ -1,5 +1,3 @@
 #!/bin/bash
-sleep 0.1
 logger Opening door
-echo Opening door
 echo 'open' >> /dev/ttyACM0
