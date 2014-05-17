@@ -16,7 +16,7 @@ if($count > 1)
 {
 	syslog(LOG_NOTICE, 'Rejected card ' . $card);
 	echo 'Rejected card ' . $card;
-	exec('/opt/deur/log_unknown ' . escapeshellarg($card));
+	exec('/home/deursysteem/log_unknown ' . escapeshellarg($card));
 	die();
 }
 
@@ -40,7 +40,7 @@ if(in_array('gosaIntranetAccount', $attributes['objectClass']))
 	echo 'Allowed entry of card ' . $card . ' (' . $owner . ')';
 	for($i = 0; $i < 5; $i++)
 	{
-		exec('/opt/deur/open');
+		exec('/home/deursysteem/open');
 		usleep(200000);
 	}
 } else {
