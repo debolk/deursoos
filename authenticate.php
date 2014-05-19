@@ -17,7 +17,7 @@ if (! isset($argv[1])) {
 $card_id = preg_replace('/[()*\\\\]/','\\\\$0',$argv[1]);
 
 // Connect to ldap
-$ldap = ldap_connect();
+$ldap = ldap_connect('ldap.i.bolkhuis.nl');
 if (!$ldap) {
     syslog(LOG_EMERG, 'Cannot connect to LDAP');
     exit(RETURN_ERROR);
