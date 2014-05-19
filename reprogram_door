@@ -1,4 +1,4 @@
 #!/bin/bash
 logger 'Reprogramming the door controller'
-/home/deursysteem/teensy_loader_cli -mmcu=atmega32u4 -w /home/deursysteem/serial.hex
+/opt/deursysteem/teensy_loader_cli -mmcu=atmega32u4 -w /opt/deursysteem/serial.hex
 logger 'Completed reprogramming of the door'

@@ -62,7 +62,7 @@ if(in_array('gosaIntranetAccount', $attributes['objectClass']))
     // Actually open the door
 	for($i = 0; $i < 5; $i++)
 	{
-		exec('/home/deursysteem/open_door');
+		exec('/opt/deursysteem/open_door');
 		sleep(1);
 	}
     exit(RETURN_ACCEPTED);
