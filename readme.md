@@ -6,9 +6,9 @@ Software for the opening of the door.
 Installation is separated into two parts: general raspberry pi configuration and installation of the system
 
 ### Installing the raspberry pi
-* Install the raspberry pi and configure as needed
+* Install the raspberry pi with either [raspbian](http://www.raspbian.org/) or [moebius](http://moebiuslinux.sourceforge.net/) (preferred) and configure as needed
 * Update the system to the latest libraries by running `apt-get update && apt-get upgrade`
-* Configure ntp to keep the correct time and date on the raspberry pi
+* (moebius only) Install and configure ntp to keep the correct time and date
 
 ### Installing the software
 * Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid`
