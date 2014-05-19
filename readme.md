@@ -17,6 +17,5 @@ Installation is separated into two parts: general raspberry pi configuration and
 * Create a directory for the code `mkdir /opt/deursysteem`
 * Git clone the repository into that directory
 * Compile the system by running `make` and `make install`.
-* Make the necessary executable by `chmod +x open_door reprogram_door scan scanner teensy_loader_cli`
 * Configure the server to start `/opt/deursysteem/scan` on boot
 * Configure the server to run `reprogram_door` every day to restore the configuration of the teensy door opener
