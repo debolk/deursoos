@@ -3,8 +3,14 @@
 Software for the opening of the door.
 
 ## Installation
+Installation is separated into two parts: general raspberry pi configuration and installation of the system
+
+### Installing the raspberry pi
 * Install the raspberry pi and configure as needed
 * Update the system to the latest libraries by running `apt-get update && apt-get upgrade`
+* Configure ntp to keep the correct time and date on the raspberry pi
+
+### Installing the software
 * Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid`
 * Install PHP5 `apt-get install php5-dev php5-cli php-pear`
 * Install git `apt-get install git`
