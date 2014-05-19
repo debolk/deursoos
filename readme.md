@@ -21,7 +21,8 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Configure the server to run `reprogram_door` every day to restore the configuration of the teensy door opener
 
 ### Installing the CCTV
-* Install motion `apt-get install motion`
+* Install motion and the ssh filesystem `apt-get install motion sshfs`
 * Enable the motion daemon by editing `/etc/default/motion`
 * Copy the motion configuration file (`motion.conf`) to `/etc/motion/motion.conf`
-* Configure a sshfs network mount to store the files in  `sshfs#deursysteem@camerastore.i.bolkhuis.nl:  /home/deursysteem/camerastore/   fuse    auto,_netdev,port=22,user$`
+* Create a ssh-key pair and push this to deursysteem@camerastore.i.bolkhuis.nl to grant your device access to the camerastore
+* Configure a sshfs network mount to store the files in  `sshfs#deursysteem@camerastore.i.bolkhuis.nl:  /home/deursysteem/camerastore/   fuse    auto,_netdev,port=22,user`
