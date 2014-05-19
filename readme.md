@@ -3,7 +3,7 @@
 Software for the opening of the door.
 
 ## Installation
-Installation is separated into two parts: general raspberry pi configuration and installation of the system
+Installation is separated into three parts: general raspberry pi configuration, installation of the system and configuration of the CCTV
 
 ### Installing the raspberry pi
 * Install the raspberry pi with either [raspbian](http://www.raspbian.org/) or [moebius](http://moebiuslinux.sourceforge.net/) (preferred) and configure as needed
@@ -19,3 +19,9 @@ Installation is separated into two parts: general raspberry pi configuration and
 * Compile the system by running `make` and `make install`.
 * Configure the server to start `/opt/deursysteem/scan` on boot
 * Configure the server to run `reprogram_door` every day to restore the configuration of the teensy door opener
+
+### Installing the CCTV
+* Install motion `apt-get install motion`
+* Enable the motion daemon by editing `/etc/default/motion`
+* Copy the motion configuration file (`motion.conf`) to `/etc/motion/motion.conf`
+* Configure a sshfs network mount to store the files in  `sshfs#deursysteem@camerastore.i.bolkhuis.nl:  /home/deursysteem/camerastore/   fuse    auto,_netdev,port=22,user$`
