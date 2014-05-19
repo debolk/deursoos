@@ -11,13 +11,15 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * (moebius only) Install and configure ntp to keep the correct time and date
 
 ### Installing the software
-* Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid`
-* Install PHP5 `apt-get install php5-dev php5-cli php-pear`
+* Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd`
+* Install the API by downloading it from [acsccid project](http://acsccid.sourceforge.net/). You'll need to compile this from source as there are no pre-built packages available for the armhf architecture
+* Install PHP5 `apt-get install php5-dev php5-cli php-pear php5-ldap`
 * Install git `apt-get install git`
+* Disable the pn533 and nfc modules by copying the included config file `cp blacklist-nfc.conf /etc/modprobe.d/blacklist-nfc.conf`
 * Create a directory for the code `mkdir /opt/deursysteem`
 * Git clone the repository into that directory
 * Compile the system by running `make` and `make install`.
-* Configure the server to start `/opt/deursysteem/scan` on boot
+* Configure the server to start `/opt/deursysteem/scan &` on boot by adding it to `/etc/rc.local`
 * Configure the server to run `reprogram_door` every day to restore the configuration of the teensy door opener
 
 ### Installing the CCTV
