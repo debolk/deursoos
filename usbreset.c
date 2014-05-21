@@ -9,7 +9,7 @@
 #include <linux/usbdevice_fs.h>
 
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     const char *filename;
     int fd;
