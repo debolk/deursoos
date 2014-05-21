@@ -4,5 +4,5 @@ all:
 
 install:
 	mv scanner.new scanner
-	mv usbreset.c usbreset
+	mv usbreset.new usbreset
 	chmod +x scanner usbreset
