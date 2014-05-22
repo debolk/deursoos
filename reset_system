@@ -1,7 +1,7 @@
 #!/bin/bash
 logger "Resetting system to ensure connectivity to the reader"
 
-USB=`lsusb -d 072f:2200`
+USB=`lsusb -d 1a40:0101`
 regex="Bus ([0-9]{3}) Device ([0-9]{3})"
 
 if [[ $USB =~ $regex ]]; then
