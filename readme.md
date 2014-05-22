@@ -31,4 +31,4 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Enable the motion daemon by editing `/etc/default/motion`
 * Copy the motion configuration file (`motion.conf`) to `/etc/motion/motion.conf`
 * Create a ssh-key pair and push this to deursysteem@camerastore.i.bolkhuis.nl to grant your device access to the camerastore
-* Configure a sshfs network mount to store the files in  `sshfs#deursysteem@camerastore.i.bolkhuis.nl:  /home/deursysteem/camerastore/   fuse    auto,_netdev,port=22,user,uid=X,gid=Y,umask=0022,nonempty`. Use the uid of the motion user (`id -u motion`) and gid of the motion group (`id -g motion`) in place of X and Y.
+* Configure a sshfs network mount to store the files in  `sshfs#deursysteem@camerastore.i.bolkhuis.nl:  /home/deursysteem/camerastore/   fuse    auto,_netdev,port=22,user,uid=X,gid=Y,umask=0022,nonempty,allow_other`. Use the uid of the motion user (`id -u motion`) and gid of the motion group (`id -g motion`) in place of X and Y.
