@@ -4,3 +4,4 @@ failures.txt
 camerastore
 usbreset.new
 usbreset
+teensy_loader_cli
