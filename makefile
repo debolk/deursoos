@@ -8,3 +8,11 @@ install:
 	mv usbreset.new usbreset
 	mv teensy_loader_cli.new teensy_loader_cli
 	chmod +x scanner usbreset teensy_loader_cli
+
+clean:
+	rm -f teensy_loader_cli.new
+	rm -f teensy_loader_cli
+	rm -f scanner.new
+	rm -f scanner
+	rm -f usbreset.new
+	rm -f usbreset
