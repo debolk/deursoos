@@ -36,7 +36,7 @@ elseif($count == 0)
 {
 	syslog(LOG_NOTICE, "Rejected card $card_id");
     // Card could not be found in LDAP, log to failures.txt
-    exec('./log_unknown ' . escapeshellarg($card));
+    exec('/opt/deursysteem/log_unknown ' . escapeshellarg($card));
 	exit(RETURN_DENIED);
 }
 
