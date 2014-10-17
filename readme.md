@@ -24,6 +24,7 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Disable the pn533 and nfc modules by copying the included config file `cp blacklist-nfc.conf /etc/modprobe.d/blacklist-nfc.conf`
 * Configure the system to start `/opt/deursysteem/scan &` on boot by adding it to `/etc/rc.local`
 * Configure the system to run `reprogram_door` every day to restore the configuration of the teensy door opener
+* Install lighttpd `apt-get install lighttpd`
 
 ### Installing the CCTV
 * Install motion and the ssh filesystem `apt-get install motion sshfs`
