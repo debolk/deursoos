@@ -5,3 +5,5 @@ camerastore
 usbreset.new
 usbreset
 teensy_loader_cli
+config.php
+/vendor/
