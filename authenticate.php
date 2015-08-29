@@ -69,7 +69,8 @@ function accessIsGrantedTo($card_id, $config)
     }
 
     // Now we have a valid token
-    $token = json_decode($response);
+    $body = (string)$response->getBody();
+    $token = json_decode($body);
 
     // Send card to API for validation
     try {
