@@ -55,11 +55,11 @@ function accessIsGrantedTo($card_id, $config)
             'headers' => [
                 'Content-Type' => 'application/json'
             ],
-            'body' => [
+            'body' => json_encode([
                 'grant_type'    => 'client_credentials',
                 'client_id'     => $config['client_id'],
                 'client_secret' => $config['client_secret']
-            ]
+            ])
         ]);
     }
     catch (Exception $e) {
