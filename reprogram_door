@@ -1,4 +1,4 @@
 #!/bin/bash
-logger --tag "deursoos" 'Reprogramming the door controller'
+logger --tag "deursoos-script" 'Reprogramming the door controller'
 /opt/deursysteem/teensy_loader_cli -mmcu=atmega32u4 -w /opt/deursysteem/serial.hex
-logger --tag "deursoos" 'Completed reprogramming of the door'
+logger --tag "deursoos-script" 'Completed reprogramming of the door'
