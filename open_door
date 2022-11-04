@@ -1,3 +1,3 @@
 #!/bin/bash
-logger Opening door
+logger --tag "deursoos" Opening door
 echo 'open' >> /dev/ttyACM0

@@ -1,12 +1,12 @@
 #!/bin/bash
 sleep 1s
-logger Started scanning
+logger --tag "deursoos" Started scanning
 while true; do
     /opt/deursysteem/scanner | (
     	while true
     	do
     		read id || exit
-    		logger Read card $id
+    		logger --tag "deursoos" Read card $id
     		php /opt/deursysteem/authenticate.php $id
     	done
     	) 
