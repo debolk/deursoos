@@ -16,7 +16,7 @@ Installation is separated into three parts: general raspberry pi configuration, 
 ### Installing the software
 * Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd`
 * Install the API by downloading it from [acsccid project](http://acsccid.sourceforge.net/). You'll need to compile this from source as there are no pre-built packages available for the armhf architecture
-* Install PHP5 `apt-get install php5-dev php5-cli php-pear php5-ldap`
+* Install PHP (last tested on PHP 7.4) `apt-get install php-dev php-cli php-pear php-ldap`
 * Install git `apt-get install git`
 * Create a directory for the code `mkdir /opt/deursysteem`
 * Git clone the repository into that directory
