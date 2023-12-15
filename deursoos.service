@@ -1,0 +1,7 @@
+[Unit]
+Description=Software to open the door
+ 
+[Service]
+Type=simple
+ExecStart=/opt/deursysteem/scan
+Restart=always

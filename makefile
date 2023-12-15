@@ -8,6 +8,8 @@ install:
 	mv usbreset.new usbreset
 	mv teensy_loader_cli.new teensy_loader_cli
 	chmod +x scanner usbreset teensy_loader_cli
+	cp ./deursoos.service /etc/systemd/system
+	systemctl daemon-reload
 
 clean:
 	rm -f teensy_loader_cli.new
@@ -16,3 +18,5 @@ clean:
 	rm -f scanner
 	rm -f usbreset.new
 	rm -f usbreset
+	rm -f /etc/systemd/system/deursoos.service
+	systemctl daemon-reload
