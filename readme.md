@@ -17,9 +17,10 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd`
 * Install the API by downloading it from [acsccid project](http://acsccid.sourceforge.net/). You'll need to compile this from source as there are no pre-built packages available for the armhf architecture
 * Install PHP (last tested on PHP 7.4) `apt-get install php-dev php-cli php-pear php-ldap`
-* Install git `apt-get install git`
+* Install git and composer `apt-get install git composer`
 * Create a directory for the code `mkdir /opt/deursysteem`
 * Git clone the repository into that directory
+* Go to the cloned directory and install dependencies with composer `composer install`
 * Compile the system by running `make` and `make install`.
 * Disable the pn533 and nfc modules by copying the included config file `cp blacklist-libnfc.conf /etc/modprobe.d/blacklist-nfc.conf`
 * Configure the system to start `/opt/deursysteem/scan &` on boot by adding it to `/etc/rc.local`
