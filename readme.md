@@ -14,8 +14,7 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * (moebius only) Install and configure ntp to keep the correct time and date
 
 ### Installing the software
-* Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd`
-* Install the API by downloading it from [acsccid project](http://acsccid.sourceforge.net/). You'll need to compile this from source as there are no pre-built packages available for the armhf architecture
+* Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd libacsccid1`
 * Install PHP (last tested on PHP 7.4) `apt-get install php-dev php-cli php-pear php-ldap`
 * Install git and composer `apt-get install git composer`
 * Create a directory for the code `mkdir /opt/deursysteem`
