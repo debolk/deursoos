@@ -20,7 +20,7 @@
   return -1; \
  }
 
-void scanner_error(char* funcname, char* error)
+void scanner_error(char* funcname, const char* error)
 {
      fprintf(stderr, "%s : %s\n",funcname,  error);
      exit(1);
