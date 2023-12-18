@@ -1,14 +1,11 @@
 #!/bin/bash
 sleep 1s
 logger --tag "deursoos-script" Started scanning
-while true; do
-    /opt/deursysteem/scanner | (
-    	while true
-    	do
-    		read id || exit
-    		logger --tag "deursoos-script" Read card $id
-    		php /opt/deursysteem/authenticate.php $id
-    	done
-    	) 
-    sleep 1s
-done
+/opt/deursysteem/scanner | (
+	while true
+	do
+		read id || exit
+		logger --tag "deursoos-script" Read card $id
+		php /opt/deursysteem/authenticate.php $id
+	done
+	) 
