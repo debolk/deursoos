@@ -21,7 +21,7 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Create a directory for the code `mkdir /opt/deursysteem`
 * Git clone the repository into that directory
 * Compile the system by running `make` and `make install`.
-* Disable the pn533 and nfc modules by copying the included config file `cp blacklist-nfc.conf /etc/modprobe.d/blacklist-nfc.conf`
+* Disable the pn533 and nfc modules by copying the included config file `cp blacklist-libnfc.conf /etc/modprobe.d/blacklist-nfc.conf`
 * Configure the system to start `/opt/deursysteem/scan &` on boot by adding it to `/etc/rc.local`
 * Configure the system to run `reprogram_door` every day to restore the configuration of the teensy door opener
 * Install lighttpd `apt-get install lighttpd`
