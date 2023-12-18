@@ -1,6 +1,9 @@
 [Unit]
 Description=Software to open the door
 Requires=network-online.target
+
+[Install]
+WantedBy=multi-user.target
  
 [Service]
 Type=simple
