@@ -1,3 +1,3 @@
 #!/bin/bash
-logger --tag "deursoos-script" Opening door
+echo Opening door
 echo 'open' >> /dev/ttyACM0
