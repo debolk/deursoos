@@ -9,7 +9,7 @@ The system uses standardised card IDs in the format "[A-Z0-9]+\-[A-Z0-9]+"
 Installation is separated into three parts: general raspberry pi configuration, installation of the system and configuration of the CCTV
 
 ### Installing the raspberry pi
-* Install the raspberry pi with either [raspbian](http://www.raspbian.org/) or [moebius](http://moebiuslinux.sourceforge.net/) (preferred) and configure as needed
+* Install the raspberry pi with either [raspbian](http://www.raspbian.org/) (recommended) or [moebius](http://moebiuslinux.sourceforge.net/) (preferred) and configure as needed
 * Update the system to the latest libraries by running `apt-get update && apt-get upgrade`
 * (moebius only) Install and configure ntp to keep the correct time and date
 
@@ -22,9 +22,8 @@ Installation is separated into three parts: general raspberry pi configuration, 
 * Go to the cloned directory and install dependencies with composer `composer install`
 * Compile the system by running `make` and `make install`.
 * Disable the pn533 and nfc modules by copying the included config file `cp blacklist-libnfc.conf /etc/modprobe.d/blacklist-nfc.conf`
-* Configure the system to start `/opt/deursysteem/scan &` on boot by adding it to `/etc/rc.local`
-* Configure the system to run `reprogram_door` every day to restore the configuration of the teensy door opener
-* Install lighttpd `apt-get install lighttpd`
+* Start and enable the service: `systemctl enable --now deursoos`
+* (maybe not needed) Configure the system to run `reprogram_door` every day to restore the configuration of the teensy door opener
 
 ### Installing the CCTV
 * Install motion and the ssh filesystem `apt-get install motion sshfs`
