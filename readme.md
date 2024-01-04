@@ -13,7 +13,7 @@ Installation is separated into two parts: general raspberry pi configuration and
 * Update the system to the latest libraries by running `apt-get update && apt-get upgrade`
 * (moebius only) Install and configure ntp to keep the correct time and date
 
-### Installing the software
+### Installing the software on the pi
 * Install the card reader libraries: `apt-get install build-essential libusb-dev libusb++-dev libpcsclite-dev libccid pcscd libacsccid1`
 * Install PHP (last tested on PHP 7.4) `apt-get install php-dev php-cli php-pear php-ldap`
 * Install git and composer `apt-get install git composer`
@@ -23,4 +23,8 @@ Installation is separated into two parts: general raspberry pi configuration and
 * Compile the system by running `make` and `make install`.
 * Disable the pn533 and nfc modules by copying the included config file `cp blacklist-libnfc.conf /etc/modprobe.d/blacklist-nfc.conf`
 * Start and enable the service: `systemctl enable --now deursoos`
-* (maybe not needed) Configure the system to run `reprogram_door` every day to restore the configuration of the teensy door opener
+
+### Installing the software on the arduino
+* Connect the arduino to a laptop using the usb cable
+* Add the following URL as additional board URL in the arduino IDE: https://www.pjrc.com/teensy/package_teensy_index.json
+* Program the arduino with the deur.ino program
